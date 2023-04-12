@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-transform: lowercase;
+        }
+        body{
+            background: #123;
+        }
+        div{
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 18px;
+        }
+        span{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 22px;
+        }
+        i{
+            cursor: pointer;
+            transition: .6s linear;
+        }
+        form{
+            position: fixed;
+            z-index: 999;
+            width: 50%;
+            height: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px;
+            top: -300px;
+            transition: .6s linear;
+        }
+        .top{
+            top: 80px;
+        }
+        input{
+            width: 100%;
+            height: 100%;
+            padding: 6px;
+            border-radius: 5px;
+            text-align: center;
+            color: #fff;
+            background-color: #222;
+        }
+        li{
+            list-style-type: none;
+            width: 100%;
+            border-bottom: 1px solid #fff;
+            padding: 12px;
+            text-align: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 28px;
+            color: #fff;
+            display: none;
+        }
+        p{
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            color: crimson;
+            font-size: 30px;
+            text-align: center;
+            width: 100%;
+            padding: 12px;
+            display: none;
+            transition: .3s linear;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>
+            <i class="bi bi-search"></i>
+        </span>
+    </div>
+    <form action="">
+        <input type="text" placeholder="Search" id="search" autocomplete="off">
+        <ul>
+            <li>saman</li>
+            <li>mmd</li>
+            <li>mina</li>
+            <li>sara</li>
+            <li>sogand</li>
+            <li>sina</li>
+            <li>tara</li>
+            <li>ahmad</li>
+            <li>reza</li>
+            <li>fati</li>
+            <li>tina</li>
+            <li>hana</li>
+            <li>shayan</li>
+            <li>armin</li>
+            <li>nina</li>
+            <p id="not">not found !....</p>
+        </ul>
+    </form>
+</body>
+<script>
+    
+
+    let num = 3
+    document.getElementsByTagName('i')[0].addEventListener('click' , function(){
+        if(num % 2){
+            document.getElementsByTagName('i')[0].className = 'bi bi-x-circle'
+            document.getElementsByTagName('form')[0].classList.add('top')
+            _input.value = ''
+            for(i=0; i<_li.length; i++){
+            _li[i].style.display = 'none'
+        }
+        }
+        else{
+            document.getElementsByTagName('i')[0].className = 'bi bi-search'
+            document.getElementsByTagName('form')[0].classList.remove('top')
+            _input.value = ''
+            for(i=0; i<_li.length; i++){
+            _li[i].style.display = 'none'
+        }
+        document.getElementById('not').style.display = 'none'
+        }
+        num++
+    })
+    
+    let _input = document.getElementById('search')
+    let _li = document.querySelectorAll('ul>li')
+    _input.addEventListener('keyup' , ()=>{
+        let _flag = 0
+        if(
+           ( _input.value).length != 0
+        ){
+            for(i=0; i<_li.length; i++){
+            _li[i].style.display = 'none'
+        }
+
+        let temp = _input.value
+        for(i=0; i<_li.length; i++){
+            if(
+               ((_li[i].innerHTML).indexOf(temp)) >= 0
+            ){
+                _li[i].style.display = 'block'
+                _flag++
+            }
+        }
+        if(_flag == 0){
+            document.getElementById('not').style.display = 'block'
+        }
+        else{
+            document.getElementById('not').style.display = 'none'
+        }
+        }
+        else{
+            for(i=0; i<_li.length; i++){
+            _li[i].style.display = 'none'
+            document.getElementById('not').style.display = 'none'
+        }
+        }
+    })
+</script>
+</html>
